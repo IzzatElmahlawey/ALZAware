@@ -1,0 +1,77 @@
+import "./sidebar.css";
+import MedicationIcon from "@mui/icons-material/Medication";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import UploadIcon from "@mui/icons-material/Upload";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import PeopleIcon from "@mui/icons-material/People";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
+import { Link } from "react-router-dom";
+export default function Sidebar() {
+  return (
+    <div className="sidebar">
+      <div className="sidebarWrapper">
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Hospital</h3>
+          <ul className="sidebarList">
+            <Link to="user" className="sidebarListItem">
+              <PersonIcon className="sidebarIcon" />
+              Patients
+            </Link>
+            <li className="sidebarListItem">
+              <MedicationIcon className="sidebarIcon" />
+              Medicines
+            </li>
+            <Link to="admin" className="sidebarListItem">
+              <AdminPanelSettingsIcon className="sidebarIcon" />
+              Admins
+            </Link>
+          </ul>
+        </div>
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Creation</h3>
+          <ul className="sidebarList">
+            <li className="sidebarListItem">
+              <AddCircleIcon className="sidebarIcon" />
+              Create Patient
+            </li>
+            <li className="sidebarListItem">
+              <AddCircleIcon className="sidebarIcon" />
+              Create Medicine
+            </li>
+            <li className="sidebarListItem">
+              <AddCircleIcon className="sidebarIcon" />
+              Create Admin
+            </li>
+          </ul>
+        </div>
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">MRI</h3>
+          <ul className="sidebarList">
+            <Link to="uploading" className="sidebarListItem">
+              <UploadIcon className="sidebarIcon" />
+              Uploading
+            </Link>
+            <Link to="report" className="sidebarListItem">
+              <SummarizeIcon className="sidebarIcon" />
+              Report
+            </Link>
+            <li className="sidebarListItem">
+              <PeopleIcon className="sidebarIcon" />
+              Relatives
+            </li>
+            <Link to="login" className="sidebarListItem">
+              <LogoutIcon className="sidebarIcon" />
+              Logout
+            </Link>
+          </ul>
+        </div>
+        <div className="bottom">
+          <div className="colorOption"></div>
+          <div className="colorOption"></div>
+        </div>
+      </div>
+    </div>
+  );
+}

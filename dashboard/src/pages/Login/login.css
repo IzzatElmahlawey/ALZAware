@@ -1,0 +1,128 @@
+.main {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  background: url("./image/Purple.png") no-repeat;
+  background-size: cover;
+}
+
+.sub-main {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  height: 450px;
+  width: 30%;
+  box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
+  padding-top: 30px;
+  border-radius: 20px;
+  background-color: white;
+  border: 4px solid #b103fc;
+}
+.imgs {
+  padding-top: 10px;
+  justify-content: center;
+  display: flex;
+}
+.container-image {
+  background-color: white;
+  border-radius: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 140px;
+  width: 140px;
+}
+.profile {
+  height: 130px;
+  width: 130px;
+  border-radius: 40px;
+}
+
+input {
+  width: 270px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #dbd9d986;
+}
+input:focus {
+  border: 2px solid #b103fc;
+}
+
+.email {
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  padding: 1px 0 0 10px;
+}
+
+.name {
+  padding-left: 70px;
+  font-size: 20px;
+}
+.second-input {
+  padding-top: 20px;
+}
+
+button {
+  width: 343px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #b103fc;
+  color: white;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+button:hover {
+  background-color: rgb(129, 10, 133);
+  color: white;
+  border: 2px solid #a618e2;
+}
+.login-button {
+  padding-top: 25px;
+}
+.error {
+  color: red;
+}
+::placeholder {
+  color: #b8b1b1b7;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+h1 {
+  color: #b103fc;
+  font-family: "Roboto", sans-serif;
+}
+@media (max-width: 768px) {
+  .sub-main {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sub-main {
+    width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  input {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  input {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+}
