@@ -1,10 +1,13 @@
+body {
+  overflow: hidden;
+}
 .main {
   justify-content: center;
   display: flex;
   align-items: center;
   min-height: 100vh;
   background: url("./image/Purple.png") no-repeat;
-  background-size: cover;
+  flex: 6;
 }
 
 .sub-main {
@@ -67,7 +70,7 @@ input:focus {
   padding-top: 20px;
 }
 
-button {
+.kill {
   width: 343px;
   height: 40px;
   border-radius: 10px;
@@ -78,7 +81,7 @@ button {
   cursor: pointer;
   font-family: "Roboto", sans-serif;
 }
-button:hover {
+.kill:hover {
   background-color: rgb(129, 10, 133);
   color: white;
   border: 2px solid #a618e2;

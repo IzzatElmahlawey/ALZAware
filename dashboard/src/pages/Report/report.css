@@ -1,3 +1,11 @@
+.Main {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  flex: 6;
+}
 .Sub-Main {
   display: flex;
   justify-content: center;
@@ -8,6 +16,7 @@
   border-radius: 10px;
   background-color: rgba(130, 130, 133, 0.897);
   font-family: "Roboto", sans-serif;
+  background-origin: border-box;
 }
 
 textarea {

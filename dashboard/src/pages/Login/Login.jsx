@@ -45,7 +45,7 @@ function LoginUi() {
             </div>
           </div>
           <div>
-            <h1>Login</h1>
+            <h1>ALZAware</h1>
             <form onSubmit={handleSubmit}>
               <div>
                 <img src={mail} alt="mail" className="email" />
@@ -70,7 +70,7 @@ function LoginUi() {
                 )}
               </div>
               <div className="login-button">
-                <button>Login</button>
+                <button className="kill">Login</button>
               </div>
             </form>
           </div>

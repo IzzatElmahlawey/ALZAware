@@ -15,7 +15,7 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Hospital</h3>
           <ul className="sidebarList">
-            <Link to="user" className="sidebarListItem">
+            <Link to="/" className="sidebarListItem">
               <PersonIcon className="sidebarIcon" />
               Patients
             </Link>
