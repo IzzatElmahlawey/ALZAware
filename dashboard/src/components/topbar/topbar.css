@@ -14,13 +14,14 @@
   justify-content: space-between;
 }
 .logo {
-  font-size: 25px;
+  font-size: 27px;
   font-weight: bold;
   color: rgb(249, 246, 252);
   cursor: pointer;
   border: 3px solid rebeccapurple;
-  border-radius: 10px;
+  border-radius: 4px 15px;
   background-color: rebeccapurple;
+  font-family: "Roboto", sans-serif;
 }
 .topRight {
   display: flex;

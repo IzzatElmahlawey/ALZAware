@@ -4,15 +4,22 @@ import Sidebar from "./components/sideBar/Sidebar.jsx";
 import "./App.css";
 import UserList from "./pages/userList/UserList.jsx";
 import AdminList from "./pages/adminList/AdminList.jsx";
-import Login from "./pages/Login/Login.jsx";
 import Report from "./pages/Report/Report.jsx";
+import Login from "./pages/Login/Login.jsx";
 import Uploading from "./pages/Uploading/Uploading.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="login" element={<Login />} />
+        <Route
+          path="login"
+          element={
+            <div className="block">
+              <Login />
+            </div>
+          }
+        />
       </Routes>
       <div>
         <Topbar />
@@ -23,6 +30,7 @@ function App() {
             <Route path="/admin" element={<AdminList />} />
             <Route path="/report" element={<Report />} />
             <Route path="/uploading" element={<Uploading />} />
+            <Route path="/" element={<App />} />
           </Routes>
         </div>
       </div>

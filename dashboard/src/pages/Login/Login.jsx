@@ -1,10 +1,13 @@
 import "./login.css";
 import React from "react";
 import { useState } from "react";
-import profile from "./image/profile.png";
+import profile1 from "./image/profile1.png";
 import mail from "./image/mail.png";
 import pass from "./image/pass.png";
+import { useNavigate } from "react-router-dom";
+
 function LoginUi() {
+  const navigate = useNavigate();
   const [ssn, setSSN] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -14,6 +17,7 @@ function LoginUi() {
     setErrors(errors);
     if (Object.keys(errors).length === 0) {
       alert("Done");
+      navigate("/");
     }
   };
   const validate = () => {
@@ -21,63 +25,51 @@ function LoginUi() {
     const error = {};
     if (!ssn) {
       error.ssn = "SSN is Required";
-    } else if (ssn.length === number || ssn.length === 14) {
-      error.ssn = "";
-    } else {
+    } else if (ssn.length !== number && ssn.length !== 14) {
       error.ssn = " SSN not Matched";
     }
     if (!password) {
       error.password = "Password is Required";
     } else if (password.length < 8) {
       error.password = "Password not Matched";
-    } else {
-      error.password = "";
+    }
+    if (Object.keys(error).length === 0) {
+      navigate("/");
     }
     return error;
   };
   return (
-    <div className="main">
-      <div className="sub-main">
-        <div>
-          <div className="imgs">
-            <div className="container-image">
-              <img src={profile} alt="profile" className="profile" />
-            </div>
-          </div>
-          <div>
-            <h1>ALZAware</h1>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <img src={mail} alt="mail" className="email" />
-                <input
-                  type="text"
-                  placeholder="SSN"
-                  className="name"
-                  onChange={(e) => setSSN(e.target.value)}
-                />
-                {errors.ssn && <div className="error">{errors.ssn}</div>}
-              </div>
-              <div className="second-input">
-                <img src={pass} alt="pass" className="email" />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="name"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {errors.password && (
-                  <div className="error">{errors.password}</div>
-                )}
-              </div>
-              <div className="login-button">
-                <button className="kill">Login</button>
-              </div>
-            </form>
-          </div>
-        </div>
+    <div className="sub-main">
+      <div>
+        <img src={profile1} alt="profile" className="profile" />
       </div>
+      <form onSubmit={handleSubmit} className="homos">
+        <h1>Login</h1>
+        <div>
+          <img src={mail} alt="mail" className="email" />
+          <input
+            type="text"
+            placeholder="SSN"
+            className="name"
+            onChange={(e) => setSSN(e.target.value)}
+          />
+          {errors.ssn && <div className="error">{errors.ssn}</div>}
+        </div>
+        <div className="second-input">
+          <img src={pass} alt="pass" className="email" />
+          <input
+            type="password"
+            placeholder="Password"
+            className="name"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <div className="error">{errors.password}</div>}
+        </div>
+        <div className="login-button">
+          <button className="link">Login</button>
+        </div>
+      </form>
     </div>
   );
 }
-
 export default LoginUi;

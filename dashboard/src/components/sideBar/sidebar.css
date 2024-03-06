@@ -1,7 +1,8 @@
-* {
+*.sidebar {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  font-family: "Roboto", sans-serif;
 }
 .sidebar {
   display: flex;
@@ -12,7 +13,7 @@
   transition: all 0.5s ease;
   left: -10px;
   border: 3px solid rebeccapurple;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: rgb(251, 251, 255);
 }
 .sidebarWrapper {
@@ -35,6 +36,7 @@
 .sidebarTitle {
   font-size: 15px;
   color: #a30de9d3;
+  font-weight: bolder;
 }
 .sidebarList {
   list-style: none;
@@ -51,8 +53,13 @@
   font-weight: 500;
   transition: all 0.1s ease;
   margin-right: 10px;
+  text-decoration: none;
 }
 .sidebarListItem:hover {
+  background-color: rebeccapurple;
+  color: white;
+}
+.sidebarListItem:focus {
   background-color: rebeccapurple;
   color: white;
 }
@@ -60,6 +67,11 @@
   margin-right: 2px;
   font-size: 20px;
 }
+.sidebarIcon:active {
+  background-color: rebeccapurple;
+  color: white;
+}
+
 .bottom {
   display: flex;
   align-items: center;
