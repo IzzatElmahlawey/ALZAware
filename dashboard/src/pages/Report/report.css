@@ -26,7 +26,7 @@ textarea {
   border: none;
   outline: none;
   background-color: #fff;
-  padding: 10px;
+  padding: 6px;
   font-size: 20px;
   resize: none;
   font-family: "Roboto", sans-serif;
@@ -58,7 +58,7 @@ textarea {
   border: 2px solid #a618e2;
 }
 .Download {
-  padding-top: 25px;
+  padding-top: 10px;
   padding-left: 10px;
 }
 .Label {
@@ -70,6 +70,11 @@ textarea {
 .Name:focus {
   border: 2px solid #b103fc;
   outline: none;
+}
+.valid {
+  color: red;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
 }
 @media screen and (max-width: 768px) {
   .Main {
