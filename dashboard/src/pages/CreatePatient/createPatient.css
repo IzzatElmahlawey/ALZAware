@@ -1,0 +1,64 @@
+.newPatient {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.newPatientTitle {
+  font-size: 30px;
+  font-weight: 600;
+  color: rebeccapurple;
+}
+.newPatientForm {
+  flex-wrap: wrap;
+  display: flex;
+  width: 65%;
+  height: 100%;
+}
+.newPatientItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 20px;
+  width: 400px;
+}
+.newPatientItem > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: gray;
+}
+.newPatientItem > input {
+  padding: 10px;
+  border: 2px solid rebeccapurple;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+input:focus {
+  border: 2px solid rebeccapurple;
+  background-color: #ebe8e8f6;
+}
+
+.newPatientGender > input {
+  margin-top: 10px;
+}
+.newPatientGender > label {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: gray;
+}
+.newPatientButton {
+  width: 300px;
+  height: 40px;
+  margin-top: 30px;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  background-color: rebeccapurple;
+  border: none;
+}

@@ -79,7 +79,7 @@ body {
 }
 .error {
   color: red;
-  font-size: 20px;
+  font-size: 10;
   font-family: "Roboto", sans-serif;
 }
 ::placeholder {
@@ -87,7 +87,7 @@ body {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
 }
-h1 {
+.title {
   color: rebeccapurple;
   font-family: "Roboto", sans-serif;
   font-size: 40px;
@@ -123,11 +123,11 @@ h1 {
     width: 90%;
     margin: 10px auto;
   }
-  button {
+  .link {
     width: 90%;
     margin: 10px auto;
   }
-  h1 {
+  .title {
     font-size: 30px;
     padding-top: 10px;
     margin: 5px;

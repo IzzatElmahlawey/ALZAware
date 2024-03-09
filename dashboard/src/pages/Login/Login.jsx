@@ -44,13 +44,14 @@ function LoginUi() {
         <img src={profile1} alt="profile" className="profile" />
       </div>
       <form onSubmit={handleSubmit} className="homos">
-        <h1>Login</h1>
+        <h1 className="title">Login</h1>
         <div>
           <img src={mail} alt="mail" className="email" />
           <input
             type="text"
-            placeholder="SSN"
             className="name"
+            placeholder="SSN"
+            autoComplete="off"
             onChange={(e) => setSSN(e.target.value)}
           />
           {errors.ssn && <div className="error">{errors.ssn}</div>}
@@ -59,8 +60,9 @@ function LoginUi() {
           <img src={pass} alt="pass" className="email" />
           <input
             type="password"
-            placeholder="Password"
             className="name"
+            placeholder="Password"
+            autoComplete="off"
             onChange={(e) => setPassword(e.target.value)}
           />
           {errors.password && <div className="error">{errors.password}</div>}

@@ -6,3 +6,9 @@
   margin-top: 20px;
   position: fixed;
 }
+.search {
+  border: 1px solid rebeccapurple;
+}
+.search:focus {
+  border: 1px solid rebeccapurple;
+}

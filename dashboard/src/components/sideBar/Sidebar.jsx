@@ -19,10 +19,10 @@ export default function Sidebar() {
               <PersonIcon className="sidebarIcon" />
               Patients
             </Link>
-            <li className="sidebarListItem">
+            <Link to="medicine" className="sidebarListItem">
               <MedicationIcon className="sidebarIcon" />
               Medicines
-            </li>
+            </Link>
             <Link to="admin" className="sidebarListItem">
               <AdminPanelSettingsIcon className="sidebarIcon" />
               Admins
@@ -32,18 +32,18 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Creation</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
+            <Link to="createP" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
               Create Patient
-            </li>
-            <li className="sidebarListItem">
+            </Link>
+            <Link to="createM" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
               Create Medicine
-            </li>
-            <li className="sidebarListItem">
+            </Link>
+            <Link to="createA" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
               Create Admin
-            </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -57,10 +57,10 @@ export default function Sidebar() {
               <SummarizeIcon className="sidebarIcon" />
               Report
             </Link>
-            <li className="sidebarListItem">
+            <Link to="assistant" className="sidebarListItem">
               <PeopleIcon className="sidebarIcon" />
-              Relatives
-            </li>
+              Assistants
+            </Link>
             <Link to="login" className="sidebarListItem">
               <LogoutIcon className="sidebarIcon" />
               Logout

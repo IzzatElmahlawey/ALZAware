@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import "./userList.css";
 import { DataGrid } from "@mui/x-data-grid";
@@ -50,6 +51,7 @@ export default function UserList() {
   return (
     <div className="userList">
       <input
+        className="search"
         type="text"
         placeholder="Search..."
         value={searchText}
