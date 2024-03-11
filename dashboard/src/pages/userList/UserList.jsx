@@ -47,10 +47,10 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link to={"/editPatient/" + params.row.id}>
               <button className="userListEdit">Edit</button>
             </Link>
-            <Link to="report">
+            <Link to="/report">
               <SummarizeIcon className="userListSummarize" />
             </Link>
             <DeleteIcon
@@ -83,13 +83,18 @@ export default function UserList() {
 
   return (
     <div className="userList">
-      <input
-        className="search"
-        type="text"
-        placeholder="Search..."
-        value={searchText}
-        onChange={handleSearch}
-      />
+      <div className="Top">
+        <input
+          className="search"
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={handleSearch}
+        />
+        <Link to="/createP">
+          <button className="add">Add Patient</button>
+        </Link>
+      </div>
       <DataGrid
         className="dataGrid"
         disableRowSelectionOnClick

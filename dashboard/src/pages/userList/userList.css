@@ -22,6 +22,7 @@
   justify-content: center;
   position: relative;
   margin-left: 200px;
+  background-color: white;
 }
 .search {
   height: 20px;
@@ -32,18 +33,30 @@
   border-radius: 5px;
 }
 .userListEdit {
-  border: none;
+  border: 2px solid #3bb077;
   border-radius: 10px;
   padding: 5px 10px;
   color: white;
   background-color: #3bb077;
   cursor: pointer;
   margin-right: 10px;
+  font-weight: bold;
+  font-size: 13px;
+}
+.userListEdit:hover {
+  background-color: white;
+  color: #3bb077;
 }
 .userListDelete {
   border: none;
   color: #e74c3c;
   cursor: pointer;
+}
+.userListDelete:hover {
+  border: 1px solid #e74c3c;
+  border-radius: 5px;
+  color: white;
+  background-color: #e74c3c;
 }
 .userListSummarize {
   color: gray;
@@ -51,4 +64,22 @@
   text-decoration: none;
   margin-right: 10px;
   margin-top: 7px;
+}
+.Top {
+  display: flex;
+  flex-direction: row;
+}
+.add {
+  margin-left: 600px;
+  color: white;
+  background-color: rebeccapurple;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  border: 3px solid rebeccapurple;
+  font-weight: bold;
+}
+.add:hover {
+  background-color: white;
+  color: rebeccapurple;
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import "./uploading.css";
-import { MdCloudUpload, MdDelete } from "react-icons/md";
-import { AiFillFileImage } from "react-icons/ai";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import ImageIcon from "@mui/icons-material/Image";
 export default function Uploading() {
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No selected file");
@@ -29,16 +30,16 @@ export default function Uploading() {
           <img src={image} width={300} height={250} alt={fileName} />
         ) : (
           <>
-            <MdCloudUpload color="rebeccapurple" size={60} />
+            <CloudUploadIcon fontSize="large" />
             <p>Browse Files to upload</p>
           </>
         )}
       </form>
       <section className="uploaded">
-        <AiFillFileImage color="black" />
+        <ImageIcon color="black" />
         <span className="content">
           {fileName}
-          <MdDelete
+          <DeleteIcon
             onClick={() => {
               setFileName("No selected file");
               setImage(null);

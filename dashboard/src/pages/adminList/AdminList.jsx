@@ -46,7 +46,7 @@ export default function AdminList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link to={"/editAdmin/" + params.row.id}>
               <button className="adminListEdit">Edit</button>
             </Link>
             <DeleteIcon
@@ -79,13 +79,18 @@ export default function AdminList() {
 
   return (
     <div className="adminList">
-      <input
-        className="search"
-        type="text"
-        placeholder="Search..."
-        value={searchText}
-        onChange={handleSearch}
-      />
+      <div className="Top">
+        <input
+          className="search"
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={handleSearch}
+        />
+        <Link to="/createA">
+          <button className="add">Add Admin</button>
+        </Link>
+      </div>
       <DataGrid
         className="dataGrid"
         disableRowSelectionOnClick

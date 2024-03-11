@@ -23,7 +23,7 @@ export default function Sidebar() {
               <MedicationIcon className="sidebarIcon" />
               Medicines
             </Link>
-            <Link to="admin" className="sidebarListItem">
+            <Link to="/admin" className="sidebarListItem">
               <AdminPanelSettingsIcon className="sidebarIcon" />
               Admins
             </Link>
@@ -32,15 +32,15 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Creation</h3>
           <ul className="sidebarList">
-            <Link to="createP" className="sidebarListItem">
+            <Link to="/createP" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
               Create Patient
             </Link>
-            <Link to="createM" className="sidebarListItem">
+            <Link to="/createM" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
               Create Medicine
             </Link>
-            <Link to="createA" className="sidebarListItem">
+            <Link to="/createA" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
               Create Admin
             </Link>
@@ -49,19 +49,19 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">MRI</h3>
           <ul className="sidebarList">
-            <Link to="uploading" className="sidebarListItem">
+            <Link to="/uploading" className="sidebarListItem">
               <UploadIcon className="sidebarIcon" />
               Uploading
             </Link>
-            <Link to="report" className="sidebarListItem">
+            <Link to="/report" className="sidebarListItem">
               <SummarizeIcon className="sidebarIcon" />
               Report
             </Link>
-            <Link to="assistant" className="sidebarListItem">
+            <Link to="/assistant" className="sidebarListItem">
               <PeopleIcon className="sidebarIcon" />
               Assistants
             </Link>
-            <Link to="login" className="sidebarListItem">
+            <Link to="/login" className="sidebarListItem">
               <LogoutIcon className="sidebarIcon" />
               Logout
             </Link>

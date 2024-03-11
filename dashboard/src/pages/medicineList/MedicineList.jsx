@@ -32,7 +32,7 @@ export default function MedicineList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/medicine/" + params.row.id}>
+            <Link to={"/editMedicine/" + params.row.id}>
               <button className="medicineListEdit">Edit</button>
             </Link>
             <DeleteIcon
@@ -62,13 +62,18 @@ export default function MedicineList() {
 
   return (
     <div className="medicineList">
-      <input
-        className="search"
-        type="text"
-        placeholder="Search..."
-        value={searchText}
-        onChange={handleSearch}
-      />
+      <div className="Top">
+        <input
+          className="search"
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={handleSearch}
+        />
+        <Link to="/createM">
+          <button className="add">Add Medicine</button>
+        </Link>
+      </div>
       <DataGrid
         className="dataGrid"
         disableRowSelectionOnClick
