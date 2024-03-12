@@ -19,13 +19,33 @@
     background-color: #222;
     color: gray;
   }
+  .sidebarListItem {
+    color: gray;
+  }
+  .sidebarListItem:focus,
+  :hover {
+    color: white;
+  }
+  .sidebarTitle {
+    color: white;
+  }
   input {
     background-color: #222;
     color: gray;
+    border: 2px solid gray;
   }
   textArea {
     background-color: #222;
     color: gray;
+  }
+  label {
+    color: white;
+  }
+  h1 {
+    color: gray;
+  }
+  .logo {
+    color: white;
   }
   .sidebar {
     background-color: #222;

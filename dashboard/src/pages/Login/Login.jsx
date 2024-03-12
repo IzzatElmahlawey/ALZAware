@@ -45,6 +45,7 @@ function LoginUi() {
       <div className="sub-main">
         <div>
           <img src={profile1} alt="profile" className="profile" />
+          <h1 className="aware">ALZAware</h1>
         </div>
         <form onSubmit={handleSubmit} className="homos">
           <h1 className="title">Login</h1>
