@@ -44,6 +44,7 @@ body {
 }
 input:invalid[focused="true"] {
   border: 2px solid red;
+  border-radius: 10px;
 }
 input:invalid[focused="true"] ~ .error {
   display: block;
@@ -62,7 +63,7 @@ input:invalid[focused="true"] ~ .error {
 }
 
 .link {
-  width: 420px;
+  width: 427px;
   height: 40px;
   border-radius: 10px;
   background-color: rebeccapurple;
@@ -101,6 +102,17 @@ input:invalid[focused="true"] ~ .error {
   font-size: 40px;
   padding-top: 20px;
   margin: 10px;
+}
+.check {
+  margin-right: 290px;
+  margin-top: 10px;
+}
+.remember {
+  margin-left: 3px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: black;
 }
 @media screen and (max-width: 768px) {
   .sub-main {

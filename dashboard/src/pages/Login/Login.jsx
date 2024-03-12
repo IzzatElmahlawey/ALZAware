@@ -77,6 +77,10 @@ function LoginUi() {
           <div className="login-button">
             <button className="link">Login</button>
           </div>
+          <div className="check">
+            <input type="checkbox" />
+            <label className="remember">Remember me</label>
+          </div>
         </form>
       </div>
     </div>
