@@ -1,7 +1,6 @@
 import React from "react";
 import Topbar from "./components/topbar/Topbar.jsx";
 import Sidebar from "./components/sideBar/Sidebar.jsx";
-import "./App.css";
 import UserList from "./pages/userList/UserList.jsx";
 import AdminList from "./pages/adminList/AdminList.jsx";
 import MedicineList from "./pages/medicineList/MedicineList.jsx";
@@ -16,9 +15,13 @@ import EditAdmin from "./pages/EditAdmin/EditAdmin.jsx";
 import EditMedicine from "./pages/EditMedicine/EditMedicine.jsx";
 import EditPatient from "./pages/EditPatient/EditPatient.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext";
+import "./style/dark.scss";
 function App() {
+  const { darkMode } = useContext(DarkModeContext);
   return (
-    <div className="app dark">
+    <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route

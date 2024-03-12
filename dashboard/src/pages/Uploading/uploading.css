@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 4px solid white;
   height: 280px;
   width: 400px;
   cursor: pointer;
@@ -74,7 +73,6 @@
 .detect:hover {
   background-color: rgb(129, 10, 133);
   color: white;
-  border: 2px solid #a618e2;
 }
 .uploaded:hover {
   background-color: rgb(129, 10, 133);

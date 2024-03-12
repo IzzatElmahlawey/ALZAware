@@ -70,8 +70,8 @@ export default function MedicineList() {
           value={searchText}
           onChange={handleSearch}
         />
-        <Link to="/createM">
-          <button className="add">Add Medicine</button>
+        <Link to="/createM" className="add">
+          Add Medicine
         </Link>
       </div>
       <DataGrid

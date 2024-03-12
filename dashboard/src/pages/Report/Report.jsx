@@ -32,35 +32,33 @@ function Report() {
   };
 
   return (
-    <div className="Main">
-      <div className="Sub-Main">
+    <div className="Sub-Main">
+      <div>
+        <label className="Label">Reason</label>
         <div>
-          <label className="Label">Reason</label>
-          <div>
-            <textarea
-              type="text"
-              className="Name"
-              value={reason}
-              onChange={(e) => setReason(e.target.value)}
-            />
-            {error.reason && <p className="valid">{error.reason}</p>}
-          </div>
+          <textarea
+            type="text"
+            className="Name"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+          />
+          {error.reason && <p className="valid">{error.reason}</p>}
+        </div>
 
-          <label className="Label">Description</label>
-          <div>
-            <textarea
-              type="text"
-              className="Name"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            {error.description && <p className="valid">{error.description}</p>}
-          </div>
-          <div className="Download">
-            <button className="Button" onClick={handleSubmit}>
-              Download
-            </button>
-          </div>
+        <label className="Label">Description</label>
+        <div>
+          <textarea
+            type="text"
+            className="Name"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          {error.description && <p className="valid">{error.description}</p>}
+        </div>
+        <div className="Download">
+          <button className="Button" onClick={handleSubmit}>
+            Download
+          </button>
         </div>
       </div>
     </div>

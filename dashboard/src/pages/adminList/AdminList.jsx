@@ -87,8 +87,8 @@ export default function AdminList() {
           value={searchText}
           onChange={handleSearch}
         />
-        <Link to="/createA">
-          <button className="add">Add Admin</button>
+        <Link to="/createA" className="add">
+          Add Admin
         </Link>
       </div>
       <DataGrid

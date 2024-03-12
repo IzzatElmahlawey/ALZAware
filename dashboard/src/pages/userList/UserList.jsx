@@ -91,8 +91,8 @@ export default function UserList() {
           value={searchText}
           onChange={handleSearch}
         />
-        <Link to="/createP">
-          <button className="add">Add Patient</button>
+        <Link to="/createP" className="add">
+          Add Patient
         </Link>
       </div>
       <DataGrid

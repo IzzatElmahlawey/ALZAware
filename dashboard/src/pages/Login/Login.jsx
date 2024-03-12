@@ -39,6 +39,7 @@ function LoginUi() {
     return error;
   };
   return (
+    <div className="main">
     <div className="sub-main">
       <div>
         <img src={profile1} alt="profile" className="profile" />
@@ -71,6 +72,7 @@ function LoginUi() {
           <button className="link">Login</button>
         </div>
       </form>
+    </div>
     </div>
   );
 }
