@@ -42,8 +42,11 @@ body {
   padding-left: 70px;
   font-size: 20px;
 }
-.name:focus {
-  border: 2px solid rebeccapurple;
+input:invalid[focused="true"] {
+  border: 2px solid red;
+}
+input:invalid[focused="true"] ~ .error {
+  display: block;
 }
 
 .email {
@@ -81,6 +84,7 @@ body {
 .login-button {
   padding-top: 20px;
 }
+
 .error {
   color: red;
   font-size: 10;

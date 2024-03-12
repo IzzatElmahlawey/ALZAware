@@ -11,7 +11,9 @@ function LoginUi() {
   const [ssn, setSSN] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [focused, setFocused] = useState(false);
   const handleSubmit = (event) => {
+    focused ? setFocused(false) : setFocused(true);
     event.preventDefault();
     const errors = validate();
     setErrors(errors);
@@ -40,39 +42,43 @@ function LoginUi() {
   };
   return (
     <div className="main">
-    <div className="sub-main">
-      <div>
-        <img src={profile1} alt="profile" className="profile" />
-      </div>
-      <form onSubmit={handleSubmit} className="homos">
-        <h1 className="title">Login</h1>
+      <div className="sub-main">
         <div>
-          <img src={mail} alt="mail" className="email" />
-          <input
-            type="text"
-            className="name"
-            placeholder="SSN"
-            autoComplete="off"
-            onChange={(e) => setSSN(e.target.value)}
-          />
-          {errors.ssn && <div className="error">{errors.ssn}</div>}
+          <img src={profile1} alt="profile" className="profile" />
         </div>
-        <div className="second-input">
-          <img src={pass} alt="pass" className="email" />
-          <input
-            type="password"
-            className="name"
-            placeholder="Password"
-            autoComplete="off"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errors.password && <div className="error">{errors.password}</div>}
-        </div>
-        <div className="login-button">
-          <button className="link">Login</button>
-        </div>
-      </form>
-    </div>
+        <form onSubmit={handleSubmit} className="homos">
+          <h1 className="title">Login</h1>
+          <div>
+            <img src={mail} alt="mail" className="email" />
+            <input
+              type="text"
+              className="name"
+              placeholder="SSN"
+              autoComplete="off"
+              onChange={(e) => setSSN(e.target.value)}
+              onBlur={handleSubmit}
+              focused={focused.toString()}
+            />
+            {errors.ssn && <div className="error">{errors.ssn}</div>}
+          </div>
+          <div className="second-input">
+            <img src={pass} alt="pass" className="email" />
+            <input
+              type="password"
+              className="name"
+              placeholder="Password"
+              autoComplete="off"
+              onChange={(e) => setPassword(e.target.value)}
+              onBlur={handleSubmit}
+              focused={focused.toString()}
+            />
+            {errors.password && <div className="error">{errors.password}</div>}
+          </div>
+          <div className="login-button">
+            <button className="link">Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

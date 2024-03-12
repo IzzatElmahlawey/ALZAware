@@ -34,12 +34,9 @@
   padding: 10px;
   border: 2px solid rebeccapurple;
   border-radius: 5px;
+  outline: none;
   font-size: 14px;
   font-weight: 500;
-}
-input:focus {
-  border: 2px solid rebeccapurple;
-  background-color: #ebe8e8f6;
 }
 
 .editPatientGender > input {

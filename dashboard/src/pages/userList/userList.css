@@ -30,6 +30,7 @@
   display: flex;
   width: 30%;
   margin-left: 200px;
+  outline: none;
   border: 2px solid rebeccapurple;
   border-radius: 5px;
 }

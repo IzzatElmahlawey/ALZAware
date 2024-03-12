@@ -31,10 +31,6 @@ textarea {
   padding-left: 10px;
   font-size: 20px;
 }
-.Name:focus {
-  border: 2px solid rebeccapurple;
-  outline: none;
-}
 
 .Button {
   width: 400px;

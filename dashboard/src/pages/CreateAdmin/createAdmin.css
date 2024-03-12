@@ -33,13 +33,10 @@
 .newAdminItem > input {
   padding: 10px;
   border: 2px solid rebeccapurple;
+  outline: none;
   border-radius: 5px;
   font-size: 14px;
   font-weight: 500;
-}
-input:focus {
-  border: 2px solid rebeccapurple;
-  background-color: #ebe8e8f6;
 }
 
 .newAdminGender > input {
