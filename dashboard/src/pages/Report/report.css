@@ -1,0 +1,80 @@
+.Sub-Main {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  width: 35%;
+  box-shadow: 11px 12px 13px 12px rgba(163, 163, 163, 0.973);
+  padding-top: 30px;
+  border-radius: 10px;
+  background-color: rgba(130, 130, 133, 0.897);
+  font-family: "Roboto", sans-serif;
+  background-origin: border-box;
+  margin: 5% auto;
+}
+
+textarea {
+  width: 400px;
+  height: 150px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  padding: 6px;
+  font-size: 20px;
+  resize: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.Name {
+  border-radius: 10px;
+  border: 2px solid rebeccapurple;
+  outline: none;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.Button {
+  width: 400px;
+  height: 50px;
+  border-radius: 60px;
+  padding-left: 10px;
+  background-color: #b103fc;
+  color: white;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+.Button:hover {
+  background-color: rgb(129, 10, 133);
+  color: white;
+  border: 2px solid #a618e2;
+}
+.Download {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.Label {
+  color: white;
+  font-size: 20px;
+  padding-left: 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+.valid {
+  color: red;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+@media screen and (max-width: 768px) {
+  .Sub-Main {
+    width: 90%;
+    height: auto;
+  }
+  textarea {
+    width: 90%;
+  }
+  .Button {
+    width: 90%;
+  }
+}

@@ -1,0 +1,63 @@
+.newAdmin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.newAdminTitle {
+  font-size: 30px;
+  font-weight: 600;
+  color: rebeccapurple;
+  display: flex;
+  justify-content: center;
+}
+.newAdminForm {
+  flex-wrap: wrap;
+  display: flex;
+  width: 66%;
+  height: 100%;
+}
+.newAdminItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-right: 20px;
+  width: 400px;
+}
+.newAdminItem > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: gray;
+}
+.newAdminItem > input {
+  padding: 10px;
+  border: 2px solid rebeccapurple;
+  outline: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.newAdminGender > input {
+  margin-top: 10px;
+}
+.newAdminGender > label {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: gray;
+}
+.newAdminButton {
+  width: 300px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  background-color: rebeccapurple;
+  border: none;
+}

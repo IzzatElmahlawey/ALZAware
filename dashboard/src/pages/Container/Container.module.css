@@ -1,0 +1,9 @@
+.container {
+  max-width: 700px;
+  min-width: 200px;
+  margin: auto;
+  margin-top: -50px;
+  border: 10px solid rebeccapurple;
+  border-radius: 20px;
+  /* background-color: red; */
+}

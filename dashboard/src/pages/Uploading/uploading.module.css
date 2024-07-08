@@ -1,0 +1,60 @@
+.analysis {
+  width: 100%;
+  margin-top: 10rem;
+  height: 80vh;
+}
+
+.title {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: rebeccapurple;
+  margin-bottom: 10rem;
+  text-align: center;
+}
+
+.analysisBox {
+  padding-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5rem;
+}
+
+.analysisBox div h2 {
+  margin-bottom: 1rem;
+  font-size: 3.2rem;
+}
+
+.analysisBox div {
+  height: 10rem;
+}
+
+.desc {
+  width: 40rem;
+  height: auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .analysis {
+    margin-top: 5rem;
+    height: 60vh;
+  }
+
+  .title {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+  }
+
+  .analysisBox {
+    padding: 0 2rem;
+  }
+
+  .analysisBox div h2 {
+    font-size: 2.5rem;
+  }
+
+  .desc {
+    width: 100%;
+  }
+}

@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.app.dark {
+  background-color: #222;
+  color: rgb(156, 156, 156);
+  width: 100%;
+  height: 100vh;
+  .dataGrid {
+    background-color: #222;
+    color: gray;
+  }
+  .topbar {
+    background-color: #222;
+    color: gray;
+  }
+  .sub-main {
+    background-color: #222;
+    color: gray;
+  }
+  .sidebarListItem {
+    color: gray;
+  }
+  .sidebarListItem:focus,
+  :hover {
+    color: white;
+  }
+  .sidebarTitle {
+    color: white;
+  }
+  input {
+    background-color: #222;
+    color: gray;
+    border: 2px solid gray;
+  }
+  textArea {
+    background-color: #222;
+    color: gray;
+  }
+  label {
+    color: white;
+  }
+  h1 {
+    color: gray;
+  }
+  .logo {
+    color: white;
+  }
+  .sidebar {
+    background-color: #222;
+    color: gray;
+    border: 3px solid #222;
+  }
+  .upload-form {
+    background-color: #222;
+    color: gray;
+  }
+  .upload-form:hover {
+    background-color: gray;
+    color: #222;
+  }
+  .detect {
+    background-color: #222;
+    color: gray;
+  }
+  .detect:hover {
+    background-color: rgb(129, 10, 133);
+    color: white;
+  }
+  .remember {
+    color: gray;
+  }
+  .addPatient:hover {
+    background-color: white;
+    color: rebeccapurple;
+  }
+  .addMedicine:hover {
+    background-color: white;
+    color: rebeccapurple;
+  }
+  .addAdmin:hover {
+    background-color: white;
+    color: rebeccapurple;
+  }
+  .userListEdit:hover {
+    background-color: white;
+    color: #3bb077;
+  }
+  .medicineListEdit:hover {
+    background-color: white;
+    color: #3bb077;
+  }
+  .adminListEdit:hover {
+    background-color: white;
+    color: #3bb077;
+  }
+}
