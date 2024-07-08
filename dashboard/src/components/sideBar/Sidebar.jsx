@@ -33,19 +33,15 @@ export default function Sidebar() {
           </ul>
         </div>
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Creation</h3>
+          <h3 className="sidebarTitle">Addition</h3>
           <ul className="sidebarList">
             <Link to="/createP" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
-              Create Patient
+              Add Patient
             </Link>
             <Link to="/createM" className="sidebarListItem">
               <AddCircleIcon className="sidebarIcon" />
-              Create Medicine
-            </Link>
-            <Link to="/createA" className="sidebarListItem">
-              <AddCircleIcon className="sidebarIcon" />
-              Create Admin
+              Add Medicine
             </Link>
           </ul>
         </div>
