@@ -1,15 +1,40 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import "./editMedicine.css";
 import TokenContext from "../Token/TokenContext.js";
 
 export default function EditMedicine() {
   const { token } = useContext(TokenContext);
+  const { id } = useParams();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    fetchMedicineData();
+  }, []);
+
+  const fetchMedicineData = async () => {
+    try {
+      const response = await axios.get(
+        `http://alzaware.runasp.net/api/Medicine/GetMedicine/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { name, description, companyName } = response.data;
+      setName(name);
+      setDescription(description);
+      setCompanyName(companyName);
+    } catch (error) {
+      console.error("Error fetching medicine data:", error);
+    }
+  };
 
   const validateForm = () => {
     let formErrors = {};
@@ -22,11 +47,10 @@ export default function EditMedicine() {
     return formErrors;
   };
 
-  const handleSubmit = async (id) => {
-    const errors = validateForm();
-    setErrors(errors);
-
-    if (Object.keys(errors).length === 0) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length === 0) {
       try {
         const response = await axios.put(
           `http://alzaware.runasp.net/api/Medicine/UpdateMedicine/${id}`,
@@ -45,9 +69,6 @@ export default function EditMedicine() {
 
         if (response.status === 200) {
           alert("Medicine updated successfully");
-          setName("");
-          setDescription("");
-          setCompanyName("");
         } else {
           alert("Failed to update medicine");
         }

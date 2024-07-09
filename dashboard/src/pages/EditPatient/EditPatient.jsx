@@ -1,10 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import "./editPatient.css";
 import TokenContext from "../Token/TokenContext.js";
 
 export default function EditPatient() {
   const { token } = useContext(TokenContext);
+  const { id } = useParams();
 
   const [form, setForm] = useState({
     firstName: "",
@@ -19,6 +21,27 @@ export default function EditPatient() {
   });
 
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    fetchPatientData();
+  }, [id]);
+
+  const fetchPatientData = async () => {
+    try {
+      const response = await axios.get(
+        `http://alzaware.runasp.net/api/Patient/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setForm(response.data);
+    } catch (error) {
+      console.error("Error fetching patient data:", error);
+    }
+  };
 
   const handleChange = (e) => {
     setForm({
@@ -43,10 +66,11 @@ export default function EditPatient() {
     return formErrors;
   };
 
-  const handleSubmit = async (id) => {
-    const errors = validateForm();
-    setErrors(errors);
-    if (Object.keys(errors).length === 0) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formErrors = validateForm();
+    setErrors(formErrors);
+    if (Object.keys(formErrors).length === 0) {
       try {
         const response = await axios.put(
           `http://alzaware.runasp.net/api/Patient/${id}`,
@@ -59,7 +83,7 @@ export default function EditPatient() {
           }
         );
         if (response.status === 200) {
-          alert("Patient information updated successfully");
+          setSuccessMessage("Patient information updated successfully");
         }
       } catch (error) {
         console.error("There was an error updating the patient!", error);
@@ -71,6 +95,7 @@ export default function EditPatient() {
   return (
     <div className="editPatient">
       <h1 className="editPatientTitle">Edit Patient</h1>
+      {successMessage && <p className="success">{successMessage}</p>}
       <form className="editPatientForm" onSubmit={handleSubmit}>
         <div className="editPatientItem">
           <label htmlFor="firstName">First Name</label>
@@ -79,6 +104,7 @@ export default function EditPatient() {
             type="text"
             name="firstName"
             placeholder="First Name"
+            value={form.firstName}
             onChange={handleChange}
           />
           {errors.firstName && <p className="error">{errors.firstName}</p>}
@@ -90,6 +116,7 @@ export default function EditPatient() {
             type="text"
             name="lastName"
             placeholder="Last Name"
+            value={form.lastName}
             onChange={handleChange}
           />
           {errors.lastName && <p className="error">{errors.lastName}</p>}
@@ -101,6 +128,7 @@ export default function EditPatient() {
             type="text"
             name="phone"
             placeholder="Phone"
+            value={form.phone}
             onChange={handleChange}
           />
           {errors.phone && <p className="error">{errors.phone}</p>}
@@ -112,6 +140,7 @@ export default function EditPatient() {
             type="text"
             name="ssn"
             placeholder="SSN"
+            value={form.ssn}
             onChange={handleChange}
           />
           {errors.ssn && <p className="error">{errors.ssn}</p>}
@@ -123,6 +152,7 @@ export default function EditPatient() {
             type="text"
             name="city"
             placeholder="City"
+            value={form.city}
             onChange={handleChange}
           />
           {errors.city && <p className="error">{errors.city}</p>}
@@ -134,6 +164,7 @@ export default function EditPatient() {
             type="text"
             name="street"
             placeholder="Street"
+            value={form.street}
             onChange={handleChange}
           />
           {errors.street && <p className="error">{errors.street}</p>}
@@ -145,6 +176,7 @@ export default function EditPatient() {
             type="text"
             name="zipCode"
             placeholder="Zip Code"
+            value={form.zipCode}
             onChange={handleChange}
           />
           {errors.zipCode && <p className="error">{errors.zipCode}</p>}
@@ -155,6 +187,7 @@ export default function EditPatient() {
             id="birthDate"
             type="date"
             name="birthDate"
+            value={form.birthDate}
             onChange={handleChange}
           />
           {errors.birthDate && <p className="error">{errors.birthDate}</p>}
@@ -167,6 +200,7 @@ export default function EditPatient() {
               name="gender"
               id="male"
               value="male"
+              checked={form.gender === "male"}
               onChange={handleChange}
             />
             <label htmlFor="male">Male</label>
@@ -175,13 +209,16 @@ export default function EditPatient() {
               name="gender"
               id="female"
               value="female"
+              checked={form.gender === "female"}
               onChange={handleChange}
             />
             <label htmlFor="female">Female</label>
           </div>
           {errors.gender && <p className="error">{errors.gender}</p>}
         </div>
-        <button className="editPatientButton">Update</button>
+        <button type="submit" className="editPatientButton">
+          Update
+        </button>
       </form>
     </div>
   );

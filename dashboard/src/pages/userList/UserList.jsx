@@ -14,7 +14,7 @@ export default function UserList() {
 
   useEffect(() => {
     fetchData();
-  });
+  }, [key]);
 
   const fetchData = async () => {
     try {
@@ -77,7 +77,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/editPatient/" + params.row.id}>
+            <Link to={`/editPatient/${params.row.id}`}>
               <button className="userListEdit">Edit</button>
             </Link>
             <Link to="/report">

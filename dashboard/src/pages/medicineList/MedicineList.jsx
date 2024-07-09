@@ -81,7 +81,6 @@ export default function MedicineList() {
     { field: "name", headerName: "Name", width: 200 },
     { field: "description", headerName: "Description", width: 300 },
     { field: "companyName", headerName: "Company Name", width: 200 },
-    { field: "adminName", headerName: "Admin Name", width: 160 },
     {
       field: "action",
       headerName: "Action",
@@ -89,7 +88,7 @@ export default function MedicineList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/editMedicine/" + params.row.id}>
+            <Link to={`/editMedicine/${params.row.id}`}>
               <button className="medicineListEdit">Edit</button>
             </Link>
             <DeleteIcon
