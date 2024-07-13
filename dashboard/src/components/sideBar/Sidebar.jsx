@@ -18,7 +18,7 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Hospital</h3>
           <ul className="sidebarList">
-            <Link to="/home" className="sidebarListItem">
+            <Link to="/" className="sidebarListItem">
               <PersonIcon className="sidebarIcon" />
               Patients
             </Link>
@@ -60,7 +60,7 @@ export default function Sidebar() {
               <PeopleIcon className="sidebarIcon" />
               Assistants
             </Link>
-            <Link to="/" className="sidebarListItem">
+            <Link to="/login" className="sidebarListItem">
               <LogoutIcon className="sidebarIcon" />
               Logout
             </Link>

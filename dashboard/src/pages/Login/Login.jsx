@@ -43,7 +43,7 @@ function LoginUi() {
           if (data.isSuccess) {
             setToken(data.data);
             notify("Login successful", "success");
-            navigate("/home");
+            navigate("/");
           } else {
             notify("Login failed", "error");
           }
@@ -74,46 +74,44 @@ function LoginUi() {
 
   return (
     <div className="main">
-      <div className="sub-main">
-        <div>
-          <img src={profile1} alt="profile" className="profile" />
-          <h1 className="aware">ALZAware</h1>
-        </div>
-        <form onSubmit={handleSubmit} className="homos">
-          <h1 className="title">Login</h1>
-          <div>
-            <img src={mail} alt="mail" className="email" />
-            <input
-              type="text"
-              className="name"
-              placeholder="SSN"
-              autoComplete="off"
-              value={ssn}
-              onChange={(e) => setSSN(e.target.value)}
-            />
-            {errors.ssn && <div className="error">{errors.ssn}</div>}
-          </div>
-          <div className="second-input">
-            <img src={pass} alt="pass" className="email" />
-            <input
-              type="password"
-              className="name"
-              placeholder="Password"
-              autoComplete="off"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errors.password && <div className="error">{errors.password}</div>}
-          </div>
-          <div className="login-button">
-            <button className="link">Login</button>
-          </div>
-          <div className="check">
-            <input type="checkbox" />
-            <label className="remember">Remember me</label>
-          </div>
-        </form>
+      <div>
+        <img src={profile1} alt="profile" className="profile" />
+        <h1 className="aware">ALZAware</h1>
       </div>
+      <form onSubmit={handleSubmit} className="homos">
+        <h1 className="title">Login</h1>
+        <div>
+          <img src={mail} alt="mail" className="email" />
+          <input
+            type="text"
+            className="name"
+            placeholder="SSN"
+            autoComplete="off"
+            value={ssn}
+            onChange={(e) => setSSN(e.target.value)}
+          />
+          {errors.ssn && <div className="error">{errors.ssn}</div>}
+        </div>
+        <div className="second-input">
+          <img src={pass} alt="pass" className="email" />
+          <input
+            type="password"
+            className="name"
+            placeholder="Password"
+            autoComplete="off"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <div className="error">{errors.password}</div>}
+        </div>
+        <div className="login-button">
+          <button className="link">Login</button>
+        </div>
+        <div className="check">
+          <input type="checkbox" />
+          <label className="remember">Remember me</label>
+        </div>
+      </form>
     </div>
   );
 }

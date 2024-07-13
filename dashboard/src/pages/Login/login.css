@@ -2,21 +2,18 @@ body {
   overflow: hidden;
   justify-content: center;
 }
+
 .main {
-  height: 100vh;
-  display: flex;
-}
-.sub-main {
   text-align: center;
   display: flex;
   justify-content: center;
-  height: 80%;
+  height: 700px;
   width: 95%;
   box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
   border-radius: 40px;
   background-color: white;
   border: 10px solid rebeccapurple;
-  margin: auto;
+  margin: 70px auto;
   justify-content: space-between;
 }
 .homos {
@@ -124,7 +121,7 @@ input:invalid[focused="true"] ~ .error {
   color: black;
 }
 @media screen and (max-width: 768px) {
-  .sub-main {
+  .main {
     width: 100%;
     height: auto;
     box-shadow: none;
