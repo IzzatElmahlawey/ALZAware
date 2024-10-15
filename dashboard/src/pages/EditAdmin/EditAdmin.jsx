@@ -1,7 +1,21 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
+import * as yup from "yup";
 import "./editAdmin.css";
 import TokenContext from "../Token/TokenContext.js";
+
+// Define Yup validation schema
+const validationSchema = yup.object().shape({
+  oldPassword: yup.string().required("Old password is required"),
+  newPassword: yup
+    .string()
+    .required("New password is required")
+    .min(8, "Password must be at least 8 characters long"), // You can add more validations like length, complexity, etc.
+  confirmNewPassword: yup
+    .string()
+    .oneOf([yup.ref("newPassword"), null], "Passwords do not match")
+    .required("Confirm password is required"),
+});
 
 export default function EditAdmin() {
   const { token } = useContext(TokenContext);
@@ -21,24 +35,26 @@ export default function EditAdmin() {
     });
   };
 
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!form.oldPassword) formErrors.oldPassword = "Old password is required";
-    if (!form.newPassword) formErrors.newPassword = "New password is required";
-    if (form.newPassword !== form.confirmNewPassword)
-      formErrors.confirmNewPassword = "Passwords do not match";
-
-    setErrors(formErrors);
-    return formErrors;
+  const validateForm = async () => {
+    try {
+      await validationSchema.validate(form, { abortEarly: false });
+      setErrors({}); // Clear errors if validation passes
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors);
+      return false;
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const errors = validateForm();
-    setErrors(errors);
+    const isValid = await validateForm();
 
-    if (Object.keys(errors).length === 0) {
+    if (isValid) {
       try {
         const response = await axios.post(
           "http://alzaware.runasp.net/api/Admin/ChangePassword",

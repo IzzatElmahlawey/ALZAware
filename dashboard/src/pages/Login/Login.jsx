@@ -5,6 +5,16 @@ import profile1 from "./image/profile1.png";
 import mail from "./image/mail.png";
 import pass from "./image/pass.png";
 import TokenContext from "../Token/TokenContext.js";
+import * as yup from "yup";
+
+// Define the Yup validation schema
+const validationSchema = yup.object().shape({
+  ssn: yup.string().required("SSN is required").length(14, "Invalid SSN"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters"),
+});
 
 function LoginUi() {
   const navigate = useNavigate();
@@ -23,9 +33,8 @@ function LoginUi() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const errors = validate();
-    setErrors(errors);
-    if (Object.keys(errors).length === 0) {
+    const isValid = await validate();
+    if (isValid) {
       try {
         const response = await fetch(
           "http://alzaware.runasp.net/api/Admin/Login",
@@ -57,19 +66,20 @@ function LoginUi() {
     }
   };
 
-  const validate = () => {
-    const error = {};
-    if (!ssn) {
-      error.ssn = "SSN is required";
-    } else if (ssn.length !== 14) {
-      error.ssn = "Invalid SSN";
+  // Validate form with Yup
+  const validate = async () => {
+    try {
+      await validationSchema.validate({ ssn, password }, { abortEarly: false });
+      setErrors({});
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors);
+      return false;
     }
-    if (!password) {
-      error.password = "Password is required";
-    } else if (password.length < 8) {
-      error.password = "Invalid password";
-    }
-    return error;
   };
 
   return (

@@ -1,33 +1,41 @@
 import "./report.css";
 import React, { useState } from "react";
+import * as yup from "yup";
+
+// Define the Yup validation schema
+const validationSchema = yup.object().shape({
+  reason: yup.string().required("Reason is required").trim(),
+  description: yup.string().required("Description is required").trim(),
+});
 
 function Report() {
   const [reason, setReason] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState({ reason: "", description: "" });
 
-  const validateForm = () => {
-    let isValid = true;
-    let error = { reason: "", description: "" };
-
-    if (!reason.trim()) {
-      error.reason = "Reason is required";
-      isValid = false;
+  const validateForm = async () => {
+    try {
+      await validationSchema.validate(
+        { reason, description },
+        { abortEarly: false }
+      );
+      setError({ reason: "", description: "" }); // Clear errors if validation passes
+      return true;
+    } catch (validationErrors) {
+      const formErrors = { reason: "", description: "" };
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setError(formErrors);
+      return false;
     }
-
-    if (!description.trim()) {
-      error.description = "Description is required";
-      isValid = false;
-    }
-
-    setError(error);
-    return isValid;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (validateForm()) {
-      // Handle form submission
+    const isValid = await validateForm();
+    if (isValid) {
+      // Handle form submission (e.g., download logic)
     }
   };
 

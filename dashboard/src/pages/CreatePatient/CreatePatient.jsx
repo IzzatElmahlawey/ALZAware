@@ -2,6 +2,29 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./createPatient.css";
 import TokenContext from "../Token/TokenContext.js";
+import * as yup from "yup";
+
+// Define the validation schema using Yup
+const validationSchema = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  phone: yup
+    .string()
+    .matches(/^\d{10}$/, "Phone number must be 10 digits")
+    .required("Phone number is required"),
+  ssn: yup
+    .string()
+    .matches(/^\d{9}$/, "SSN must be 9 digits")
+    .required("SSN is required"),
+  city: yup.string().required("City is required"),
+  street: yup.string().required("Street is required"),
+  zipCode: yup
+    .string()
+    .matches(/^\d{5}$/, "Zip code must be 5 digits")
+    .required("Zip code is required"),
+  birthDate: yup.date().required("Birth date is required"),
+  gender: yup.string().required("Gender is required"),
+});
 
 export default function CreatePatient() {
   const [form, setForm] = useState({
@@ -28,27 +51,26 @@ export default function CreatePatient() {
     });
   };
 
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!form.firstName) formErrors.firstName = "First name is required";
-    if (!form.lastName) formErrors.lastName = "Last name is required";
-    if (!form.birthDate) formErrors.birthDate = "Birth date is required";
-    if (!form.phone) formErrors.phone = "Phone number is required";
-    if (!form.ssn) formErrors.ssn = "SSN is required";
-    if (!form.city) formErrors.city = "City is required";
-    if (!form.street) formErrors.street = "Street is required";
-    if (!form.zipCode) formErrors.zipCode = "Zip code is required";
-    if (!form.gender) formErrors.gender = "Gender is required";
-    setErrors(formErrors);
-    return formErrors;
+  // Update the validateForm function to use Yup
+  const validateForm = async () => {
+    try {
+      await validationSchema.validate(form, { abortEarly: false });
+      setErrors({}); // Clear errors if validation passes
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors); // Set the errors in state
+      return false;
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formErrors = validateForm();
-    setErrors(formErrors);
-    if (Object.keys(formErrors).length === 0) {
+    const isValid = await validateForm();
+    if (isValid) {
       try {
         const response = await axios.post(
           "http://alzaware.runasp.net/api/Patient/Create",
@@ -67,12 +89,13 @@ export default function CreatePatient() {
       }
     }
   };
+
   return (
     <div className="newPatient">
       <h1 className="newPatientTitle">New Patient</h1>
       <form className="newPatientForm" onSubmit={handleSubmit}>
         <div className="newPatientItem">
-          <label>FirstName</label>
+          <label>First Name</label>
           <input
             type="text"
             name="firstName"
@@ -82,7 +105,7 @@ export default function CreatePatient() {
           {errors.firstName && <p className="error">{errors.firstName}</p>}
         </div>
         <div className="newPatientItem">
-          <label>LastName</label>
+          <label>Last Name</label>
           <input
             type="text"
             name="lastName"
@@ -98,16 +121,15 @@ export default function CreatePatient() {
             name="birthDate"
             value={form.birthDate}
             onChange={handleChange}
-            placeholder="Birth Date"
           />
           {errors.birthDate && <p className="error">{errors.birthDate}</p>}
         </div>
         <div className="newPatientItem">
-          <label>phone</label>
+          <label>Phone</label>
           <input
-            type="number"
+            type="text"
             name="phone"
-            placeholder="phone"
+            placeholder="Phone"
             onChange={handleChange}
           />
           {errors.phone && <p className="error">{errors.phone}</p>}
@@ -115,7 +137,7 @@ export default function CreatePatient() {
         <div className="newPatientItem">
           <label>SSN</label>
           <input
-            type="number"
+            type="text"
             name="ssn"
             placeholder="SSN"
             onChange={handleChange}
@@ -123,31 +145,31 @@ export default function CreatePatient() {
           {errors.ssn && <p className="error">{errors.ssn}</p>}
         </div>
         <div className="newPatientItem">
-          <label>city</label>
+          <label>City</label>
           <input
             type="text"
             name="city"
-            placeholder="city"
+            placeholder="City"
             onChange={handleChange}
           />
           {errors.city && <p className="error">{errors.city}</p>}
         </div>
         <div className="newPatientItem">
-          <label>street</label>
+          <label>Street</label>
           <input
             type="text"
             name="street"
-            placeholder="street"
+            placeholder="Street"
             onChange={handleChange}
           />
           {errors.street && <p className="error">{errors.street}</p>}
         </div>
         <div className="newPatientItem">
-          <label>ZipCode</label>
+          <label>Zip Code</label>
           <input
-            type="number"
+            type="text"
             name="zipCode"
-            placeholder="ZipCode"
+            placeholder="Zip Code"
             onChange={handleChange}
           />
           {errors.zipCode && <p className="error">{errors.zipCode}</p>}

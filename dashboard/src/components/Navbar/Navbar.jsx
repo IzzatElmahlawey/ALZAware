@@ -1,27 +1,27 @@
 import React from "react";
-import "./topbar.css";
+import "./navbar.css";
 import NotificationsNone from "@mui/icons-material/NotificationsNone";
 import LanguageIcon from "@mui/icons-material/Language";
 import SettingsIcon from "@mui/icons-material/Settings";
 import profile from "./profile.png";
 
-export default function Topbar() {
+export default function Navbar() {
   return (
-    <div className="topbar">
-      <div className="topbarWrapper">
+    <div className="navbar">
+      <div className="navbarWrapper">
         <div className="topLeft">
           <span className="logo">ALZAware</span>
         </div>
         <div className="topRight">
-          <div className="topbarIconContainer">
+          <div className="navbarIconContainer">
             <NotificationsNone />
             <span className="topIconBadge">2</span>
           </div>
-          <div className="topbarIconContainer">
+          <div className="navbarIconContainer">
             <LanguageIcon />
             <span className="topIconBadge">2</span>
           </div>
-          <div className="topbarIconContainer">
+          <div className="navbarIconContainer">
             <SettingsIcon />
           </div>
           <img src={profile} alt="" className="topAvatar" />

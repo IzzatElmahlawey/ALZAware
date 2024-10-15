@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Topbar from "./components/topbar/Topbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import Sidebar from "./components/sideBar/Sidebar.jsx";
 import UserList from "./pages/userList/UserList.jsx";
 import AdminList from "./pages/adminList/AdminList.jsx";
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
-      <Topbar />
+      <Navbar />
       <div className="container">
         <Sidebar />
         <Routes>

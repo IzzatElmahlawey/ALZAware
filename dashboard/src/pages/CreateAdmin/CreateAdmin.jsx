@@ -1,7 +1,34 @@
-import React from "react";
-import "./createAdmin.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import * as yup from "yup";
+import "./createAdmin.css";
+
+// Define Yup validation schema
+const validationSchema = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  phone: yup
+    .string()
+    .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+    .required("Phone number is required"),
+  ssn: yup
+    .string()
+    .matches(/^\d{9}$/, "SSN must be 9 digits")
+    .required("SSN is required"),
+  city: yup.string().required("City is required"),
+  street: yup.string().required("Street is required"),
+  birthDate: yup.date().required("Birth date is required"),
+  zipCode: yup
+    .string()
+    .matches(/^\d{5}$/, "Zip code must be 5 digits")
+    .required("Zip code is required"),
+  password: yup.string().required("Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Confirm password is required"),
+  gender: yup.string().required("Gender is required"),
+});
 
 export default function CreateAdmin() {
   const [form, setForm] = useState({
@@ -28,30 +55,25 @@ export default function CreateAdmin() {
     });
   };
 
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!form.firstName) formErrors.firstName = "First name is required";
-    if (!form.lastName) formErrors.lastName = "Last name is required";
-    if (!form.phone) formErrors.phone = "Phone number is required";
-    if (!form.ssn) formErrors.ssn = "SSN is required";
-    if (!form.zipCode) formErrors.zipCode = "zipCode is required";
-    if (!form.city) formErrors.city = "City is required";
-    if (!form.street) formErrors.street = "Street is required";
-    if (!form.birthDate) formErrors.birthDate = "Birth date is required";
-    if (!form.password) formErrors.password = "Password is required";
-    if (form.password !== form.confirmPassword)
-      formErrors.confirmPassword = "Password doesn't match";
-    if (!form.gender) formErrors.gender = "Gender is required";
-    setErrors(formErrors);
-    return formErrors;
+  const validateForm = async () => {
+    try {
+      await validationSchema.validate(form, { abortEarly: false });
+      setErrors({}); // Clear errors if validation passes
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors);
+      return false;
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const errors = validateForm();
-    setErrors(errors);
-    if (Object.keys(errors).length === 0) {
+    const isValid = await validateForm();
+    if (isValid) {
       try {
         const response = await axios.post(
           "http://alzaware.runasp.net/api/Admin/Create",
@@ -157,17 +179,19 @@ export default function CreateAdmin() {
           />
           {errors.birthDate && <p className="error">{errors.birthDate}</p>}
         </div>
+
         <div className="newAdminItem">
-          <label>zipCode</label>
+          <label>Zip Code</label>
           <input
             type="text"
             name="zipCode"
             value={form.zipCode}
             onChange={handleChange}
-            placeholder="zipCode"
+            placeholder="Zip Code"
           />
           {errors.zipCode && <p className="error">{errors.zipCode}</p>}
         </div>
+
         <div className="newAdminItem">
           <label>Password</label>
           <input
@@ -179,6 +203,7 @@ export default function CreateAdmin() {
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
+
         <div className="newAdminItem">
           <label>Confirm Password</label>
           <input
@@ -192,6 +217,7 @@ export default function CreateAdmin() {
             <p className="error">{errors.confirmPassword}</p>
           )}
         </div>
+
         <div className="newAdminItem">
           <label>Gender</label>
           <div className="newAdminGender">

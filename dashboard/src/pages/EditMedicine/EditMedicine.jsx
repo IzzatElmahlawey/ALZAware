@@ -1,8 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import * as yup from "yup"; // Import Yup for validation
 import "./editMedicine.css";
 import TokenContext from "../Token/TokenContext.js";
+
+// Define Yup validation schema
+const validationSchema = yup.object().shape({
+  name: yup.string().required("Name is required"),
+  description: yup.string().required("Description is required"),
+  companyName: yup.string().required("Company name is required"),
+});
 
 export default function EditMedicine() {
   const { token } = useContext(TokenContext);
@@ -36,21 +44,30 @@ export default function EditMedicine() {
     }
   };
 
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!name) formErrors.name = "Name is required";
-    if (!description) formErrors.description = "Description is required";
-    if (!companyName) formErrors.companyName = "Company name is required";
-
-    setErrors(formErrors);
-    return formErrors;
+  const validateForm = async () => {
+    try {
+      // Validate the form using Yup schema
+      await validationSchema.validate(
+        { name, description, companyName },
+        { abortEarly: false }
+      );
+      setErrors({}); // Clear errors if validation passes
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors);
+      return false;
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length === 0) {
+    const isValid = await validateForm();
+
+    if (isValid) {
       try {
         const response = await axios.put(
           `http://alzaware.runasp.net/api/Medicine/UpdateMedicine/${id}`,

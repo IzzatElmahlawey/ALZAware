@@ -2,6 +2,27 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./relatives.css";
 import TokenContext from "../Token/TokenContext.js";
+import * as yup from "yup";
+
+// Define the Yup validation schema
+const validationSchema = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters"),
+  ssn: yup
+    .string()
+    .required("SSN is required")
+    .length(14, "SSN must be exactly 14 characters"),
+  city: yup.string().required("City is required"),
+  street: yup.string().required("Street is required"),
+  zipCode: yup.string().required("Zip code is required"),
+  gender: yup.string().required("Gender is required"),
+  birthDate: yup.date().required("Birth date is required"),
+  relationshipDegree: yup.string().required("Relationship degree is required"),
+});
 
 export default function Relatives({ patientId }) {
   const [form, setForm] = useState({
@@ -27,29 +48,25 @@ export default function Relatives({ patientId }) {
     });
   };
 
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!form.firstName) formErrors.firstName = "First name is required";
-    if (!form.lastName) formErrors.lastName = "Last name is required";
-    if (!form.password) formErrors.password = "Password is required";
-    if (!form.ssn) formErrors.ssn = "SSN is required";
-    if (!form.city) formErrors.city = "City is required";
-    if (!form.street) formErrors.street = "Street is required";
-    if (!form.zipCode) formErrors.zipCode = "Zip code is required";
-    if (!form.gender) formErrors.gender = "Gender is required";
-    if (!form.birthDate) formErrors.birthDate = "Birth date is required";
-    if (!form.relationshipDegree)
-      formErrors.relationshipDegree = "Relationship degree is required";
-    setErrors(formErrors);
-    return formErrors;
+  const validateForm = async () => {
+    try {
+      await validationSchema.validate(form, { abortEarly: false });
+      setErrors({});
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors);
+      return false;
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formErrors = validateForm();
-    setErrors(formErrors);
-    if (Object.keys(formErrors).length === 0) {
+    const isValid = await validateForm();
+    if (isValid) {
       try {
         const response = await axios.post(
           `http://alzaware.runasp.net/api/AddRelative/AddRelative/${patientId}`,

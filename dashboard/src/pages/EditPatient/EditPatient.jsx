@@ -1,8 +1,34 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import * as yup from "yup"; // Import Yup for validation
 import "./editPatient.css";
 import TokenContext from "../Token/TokenContext.js";
+
+// Define Yup validation schema
+const validationSchema = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  phone: yup
+    .string()
+    .required("Phone number is required")
+    .matches(/^\d+$/, "Phone number is invalid"),
+  ssn: yup
+    .string()
+    .required("SSN is required")
+    .matches(/^\d{9}$/, "SSN must be 9 digits"),
+  city: yup.string().required("City is required"),
+  street: yup.string().required("Street is required"),
+  zipCode: yup
+    .string()
+    .required("Zip code is required")
+    .matches(/^\d{5}$/, "Zip code must be 5 digits"),
+  birthDate: yup
+    .date()
+    .required("Birth date is required")
+    .typeError("Invalid date format"),
+  gender: yup.string().required("Gender is required"),
+});
 
 export default function EditPatient() {
   const { token } = useContext(TokenContext);
@@ -50,27 +76,27 @@ export default function EditPatient() {
     });
   };
 
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!form.firstName) formErrors.firstName = "First name is required";
-    if (!form.lastName) formErrors.lastName = "Last name is required";
-    if (!form.phone) formErrors.phone = "Phone number is required";
-    if (!form.ssn) formErrors.ssn = "SSN is required";
-    if (!form.city) formErrors.city = "City is required";
-    if (!form.street) formErrors.street = "Street is required";
-    if (!form.zipCode) formErrors.zipCode = "Zip code is required";
-    if (!form.birthDate) formErrors.birthDate = "Birth date is required";
-    if (!form.gender) formErrors.gender = "Gender is required";
-    setErrors(formErrors);
-    return formErrors;
+  const validateForm = async () => {
+    try {
+      // Use Yup validation schema to validate the form
+      await validationSchema.validate(form, { abortEarly: false });
+      setErrors({}); // Clear any previous errors if validation passes
+      return true;
+    } catch (validationErrors) {
+      const formErrors = {};
+      validationErrors.inner.forEach((error) => {
+        formErrors[error.path] = error.message;
+      });
+      setErrors(formErrors); // Set validation errors
+      return false;
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
-    setErrors(formErrors);
-    if (Object.keys(formErrors).length === 0) {
+    const isValid = await validateForm();
+
+    if (isValid) {
       try {
         const response = await axios.put(
           `http://alzaware.runasp.net/api/Patient/${id}`,
